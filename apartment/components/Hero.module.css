@@ -1,0 +1,101 @@
+.heroSection {
+  background: linear-gradient(135deg, #1a56db 0%, #0099ff 100%);
+  color: white;
+  padding: 80px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroTag {
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.searchBox {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.filterGroup {
+  flex: 1;
+  padding: 0 15px;
+  border-right: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  position: relative;
+}
+
+.filterGroup:last-of-type {
+  border-right: none;
+}
+
+.filterIcon {
+  color: #999;
+}
+
+.filterContent {
+  text-align: left;
+  flex: 1;
+}
+
+.label {
+  display: block;
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.value {
+  display: block;
+  font-weight: 600;
+  color: #333;
+}
+
+.searchBtn {
+  background-color: #1a365d;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.searchBtn:hover {
+  background-color: #152b4a;
+}
