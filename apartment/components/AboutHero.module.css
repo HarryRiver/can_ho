@@ -1,0 +1,106 @@
+.section {
+  padding: 100px 0;
+  background-color: white;
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.content {
+  max-width: 550px;
+}
+
+.tag {
+  display: inline-block;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+  margin-bottom: 25px;
+}
+
+.title span {
+  color: #2563eb;
+}
+
+.desc {
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+.features {
+  display: flex;
+  gap: 30px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+
+.checkIcon {
+  width: 24px;
+  height: 24px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 550px;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
+}
+
+.image {
+  object-fit: cover;
+}
+
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+  
+  .content {
+    margin: 0 auto;
+  }
+  
+  .features {
+    justify-content: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+}

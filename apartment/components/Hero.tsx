@@ -1,19 +1,50 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   return (
     <section className={styles.heroSection}>
+      <div className={styles.blob + ' ' + styles.blob1}></div>
+      <div className={styles.blob + ' ' + styles.blob2}></div>
+      
       <div className="container">
-        <span className={styles.heroTag}>Nền tảng thuê căn hộ cao cấp</span>
-        <h1 className={styles.title}>
+        <motion.span 
+          className={styles.heroTag}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          Nền tảng thuê căn hộ cao cấp
+        </motion.span>
+        
+        <motion.h1 
+          className={styles.title}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           Tìm căn hộ lý tưởng – <br />
-          Nhanh chóng & An toàn
-        </h1>
-        <p className={styles.subtitle}>
+          <span>Nhanh chóng & An toàn</span>
+        </motion.h1>
+        
+        <motion.p 
+          className={styles.subtitle}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           Hơn 10,000+ căn hộ đã được xác minh. Tìm kiếm ngôi nhà mới của bạn chỉ với vài bước đơn giản.
-        </p>
+        </motion.p>
 
-        <div className={styles.searchBox}>
+        <motion.div 
+          className={styles.searchBox}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ scale: 1.01 }}
+        >
           <div className={styles.filterGroup}>
             <svg
               className={styles.filterIcon}
@@ -86,7 +117,11 @@ export default function Hero() {
             </svg>
           </div>
 
-          <button className={styles.searchBtn}>
+          <motion.button 
+            className={styles.searchBtn}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <svg
               width="20"
               height="20"
@@ -101,9 +136,10 @@ export default function Hero() {
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
             Tìm kiếm
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );
 }
+

@@ -1,48 +1,68 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.navContainer}`}>
         <Link href="/" className={styles.logo}>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className={styles.logoIcon}
+          <motion.div
+            initial={{ rotate: -10 }}
+            animate={{ rotate: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <path
-              d="M3 21H21"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M5 21V7L12 3L19 21"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M9 10H15"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M9 14H15"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.logoIcon}
+            >
+              <path
+                d="M3 21H21"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 21V7L12 3L19 21"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9 10H15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9 14H15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.div>
           <span className={styles.logoText}>
             Apartment<span className={styles.logoHighlight}>Rental</span>
           </span>
@@ -50,36 +70,30 @@ export default function Header() {
 
         <nav>
           <ul className={styles.navLinks}>
-            <li>
-              <Link href="/" className={styles.navLink}>
-                Trang chủ
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className={styles.navLink}>
-                Căn hộ
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className={styles.navLink}>
-                Dự án
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className={styles.navLink}>
-                Về chúng tôi
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className={styles.navLink}>
-                Liên hệ
-              </Link>
-            </li>
+            {['Trang chủ', 'Căn hộ', 'Dự án', 'Về chúng tôi', 'Liên hệ'].map((item, i) => (
+              <motion.li 
+                key={item}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
+              >
+                <Link href="#" className={styles.navLink}>
+                  {item}
+                </Link>
+              </motion.li>
+            ))}
           </ul>
         </nav>
 
         <div className={styles.actions}>
-          <button className={styles.loginBtn}>
+          <motion.button 
+            className={styles.loginBtn}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <svg
               width="16"
               height="16"
@@ -95,8 +109,15 @@ export default function Header() {
               <line x1="15" y1="12" x2="3" y2="12" />
             </svg>
             Đăng tin
-          </button>
-          <button className={styles.userBtn} aria-label="User Profile">
+          </motion.button>
+          <motion.button 
+            className={styles.userBtn} 
+            aria-label="User Profile"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ scale: 1.1 }}
+          >
             <svg
               width="20"
               height="20"
@@ -110,9 +131,10 @@ export default function Header() {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-          </button>
+          </motion.button>
         </div>
       </div>
     </header>
   );
 }
+

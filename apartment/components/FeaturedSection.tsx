@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import ApartmentCard from './ApartmentCard';
 import styles from './FeaturedSection.module.css';
 
@@ -41,23 +44,61 @@ const APARTMENTS = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.95, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.21, 1, 0.44, 1] as [number, number, number, number],
+    },
+  },
+};
+
 export default function FeaturedSection() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <div className={styles.header}>
+        <motion.div 
+          className={styles.header}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className={styles.title}>Căn hộ nổi bật</h2>
           <Link href="#" className={styles.viewAll}>
             Xem tất cả &rarr;
           </Link>
-        </div>
+        </motion.div>
 
-        <div className={styles.grid}>
+        <motion.div 
+          className={styles.grid}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {APARTMENTS.map((apt) => (
-            <ApartmentCard key={apt.id} {...apt} />
+            <motion.div key={apt.id} variants={itemVariants}>
+              <ApartmentCard {...apt} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
+
