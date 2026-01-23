@@ -1,5 +1,3 @@
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
 import ApartmentListing from '@/components/ApartmentListing/ApartmentListing';
 
 export const metadata = {
@@ -9,12 +7,8 @@ export const metadata = {
 
 export default function ApartmentPage() {
   return (
-    <>
-      <Header />
-      <main>
-        <ApartmentListing />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <ApartmentListing />
+    </main>
   );
 }

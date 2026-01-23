@@ -1,0 +1,207 @@
+.wrapper {
+  position: relative;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 30px;
+}
+
+.counter {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.mainPhotoSection {
+  margin-bottom: 40px;
+}
+
+.coverImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 4px solid white;
+}
+
+.coverImage {
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.coverImageWrapper:hover .coverImage {
+  transform: scale(1.05);
+}
+
+.coverBadge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: #1e3a8a;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.gallerySection {
+  margin-bottom: 50px;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.galleryItem {
+  position: relative;
+  aspect-ratio: 1/1;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.galleryImage {
+  object-fit: cover;
+  transition: all 0.3s;
+}
+
+.galleryItem:hover .galleryImage {
+  opacity: 0.8;
+}
+
+.imageNumber {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.addPhotoBtn {
+  aspect-ratio: 1/1;
+  border: 2px dashed #cbd5e1;
+  background: #f8fafc;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #64748b;
+}
+
+.addPhotoBtn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+.addIcon {
+  margin-bottom: 8px;
+}
+
+.addPhotoBtn span {
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.videoSection {
+  padding-top: 30px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.subTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.inputWithIcon {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.inputWithIcon:focus-within {
+  border-color: #2563eb;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.05);
+}
+
+.iconPrefix {
+  padding-left: 18px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+}
+
+.inputWithIcon input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 14px 18px;
+  font-size: 1rem;
+  outline: none;
+  color: #0f172a;
+  width: 100%;
+}
+
+.helper {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

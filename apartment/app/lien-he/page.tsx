@@ -1,5 +1,3 @@
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
 import ContactSection from '@/components/ContactSection/ContactSection';
 
 export const metadata = {
@@ -9,12 +7,8 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <>
-      <Header />
-      <main>
-        <ContactSection />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <ContactSection />
+    </main>
   );
 }

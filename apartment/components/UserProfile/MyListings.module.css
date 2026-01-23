@@ -1,0 +1,398 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.createBtn {
+  background: #1E3A8A;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.createBtn:hover {
+  background: #1E40AF;
+  transform: translateY(-1px);
+}
+
+/* Stats Cards */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.statCard {
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+}
+
+.textGreen { color: #10B981; }
+.textOrange { color: #F59E0B; }
+.textRed { color: #EF4444; }
+
+/* Filter Bar */
+.filterBar {
+  background: white;
+  padding: 1rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dropdowns {
+  display: flex;
+  gap: 1rem;
+}
+
+.select {
+  border: 1px solid #E5E7EB;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 0.875rem;
+  background-color: #F9FAFB;
+  outline: none;
+  cursor: pointer;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #F9FAFB;
+  border-radius: 99px;
+  border: 1px solid transparent;
+  flex: 1;
+  max-width: 300px;
+}
+
+.searchBox:focus-within {
+  background: white;
+  border-color: #E5E7EB;
+}
+
+.searchBox input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.searchBox svg {
+  color: #9CA3AF;
+}
+
+/* Listings List */
+.listingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.listingCard {
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.listingCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.cardExpired .image {
+  filter: grayscale(100%);
+}
+
+.cardExpired .cardTitle {
+  color: #4B5563;
+}
+
+.imageSection {
+  position: relative;
+  width: 180px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .listingCard {
+    flex-direction: column;
+  }
+  .imageSection {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.idBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #374151;
+  z-index: 10;
+}
+
+.expiredOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+}
+
+.cardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.statusBadge {
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusBadge.active { background: #ECFDF5; color: #059669; }
+.statusBadge.pending { background: #FFF7ED; color: #EA580C; }
+.statusBadge.expired { background: #FEF2F2; color: #DC2626; }
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6B7280;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.cardStats {
+  display: flex;
+  gap: 2rem;
+  margin-top: auto;
+}
+
+@media (max-width: 900px) {
+  .cardStats {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.statItem svg {
+  color: #9CA3AF;
+}
+
+.statLabelMini {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #9CA3AF;
+  text-transform: uppercase;
+}
+
+.statValueMini {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.cardActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  min-width: 140px;
+}
+
+@media (max-width: 640px) {
+  .cardActions {
+    flex-direction: row;
+    width: 100%;
+  }
+  .cardActions button {
+    flex: 1;
+  }
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 99px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: #F3F4F6;
+  color: #374151;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.actionBtn:hover {
+  background: #E5E7EB;
+}
+
+.btnOrange {
+  background: #FFF7ED;
+  color: #F97316;
+}
+
+.btnOrange:hover {
+  background: #FFEDD5;
+}
+
+.btnBlueFilled {
+  background: #1E3A8A;
+  color: white;
+}
+
+.btnBlueFilled:hover {
+  background: #1E40AF;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.pageText {
+  color: #6B7280;
+  font-size: 0.875rem;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pageBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #E5E7EB;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #4B5563;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.pageBtn:hover {
+  background: #F9FAFB;
+}
+
+.pageActive {
+  background: #1E3A8A;
+  color: white;
+  border-color: #1E3A8A;
+}
+
+.pageActive:hover {
+  background: #1E40AF;
+}

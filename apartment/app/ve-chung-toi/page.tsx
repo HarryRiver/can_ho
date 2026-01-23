@@ -1,5 +1,3 @@
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
 import AboutHero from '@/components/AboutHero/AboutHero';
 import AboutStats from '@/components/AboutStats/AboutStats';
 import MissionVision from '@/components/MissionVision/MissionVision';
@@ -14,17 +12,13 @@ export const metadata = {
 
 export default function AboutUs() {
   return (
-    <>
-      <Header />
-      <main>
-        <AboutHero />
-        <AboutStats />
-        <MissionVision />
-        <CoreValues />
-        <TeamSection />
-        <AboutCTA />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <AboutHero />
+      <AboutStats />
+      <MissionVision />
+      <CoreValues />
+      <TeamSection />
+      <AboutCTA />
+    </main>
   );
 }
