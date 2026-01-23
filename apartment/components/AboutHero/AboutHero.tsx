@@ -15,7 +15,7 @@ export default function AboutHero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className={styles.tag}>Giải pháp căn hộ tiêu chuẩn</span>
+            <span className={styles.tag}>Câu chuyện của chúng tôi</span>
             <h1 className={styles.title}>
               Nâng tầm trải nghiệm <br />
               <span>Không gian sống</span>

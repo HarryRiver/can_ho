@@ -1,0 +1,146 @@
+.stickyWrapper {
+  position: sticky;
+  top: 100px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
+}
+
+.agentInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.avatar {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.agentName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.verified {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 0.5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.formGroup input, 
+.formGroup textarea {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #fcfcfc;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.formGroup input:focus, 
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.05);
+}
+
+.sendBtn {
+  background: #1e3a8a;
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+
+.sendBtn:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+}
+
+.callBtn {
+  background: white;
+  color: #0f172a;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.callBtn:hover {
+  background: #f8fafc;
+}
+
+.guarantee {
+  background: #eff6ff;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  gap: 15px;
+}
+
+.guaranteeIcon {
+  flex-shrink: 0;
+}
+
+.guaranteeTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 4px;
+}
+
+.guaranteeText {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.4;
+}

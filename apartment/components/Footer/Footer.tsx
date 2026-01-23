@@ -39,7 +39,8 @@ export default function Footer() {
           <div className={styles.navCol}>
             <h4 className={styles.colTitle}>Công ty</h4>
             <div className={styles.links}>
-              <Link href="#" className={styles.link}>Về chúng tôi</Link>
+              <Link href="/ve-chung-toi" className={styles.link}>Về chúng tôi</Link>
+              <Link href="/lien-he" className={styles.link}>Liên hệ</Link>
               <Link href="#" className={styles.link}>Quy trình làm việc</Link>
               <Link href="#" className={styles.link}>Chính sách bảo mật</Link>
               <Link href="#" className={styles.link}>Điều khoản dịch vụ</Link>

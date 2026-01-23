@@ -70,14 +70,22 @@ export default function Header() {
 
         <nav>
           <ul className={styles.navLinks}>
-            {['Trang chủ', 'Căn hộ', 'Dự án', 'Về chúng tôi', 'Liên hệ'].map((item, i) => (
+            {['Trang chủ', 'Căn hộ', 'Về chúng tôi', 'Liên hệ'].map((item, i) => (
               <motion.li 
                 key={item}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.1 }}
               >
-                <Link href="#" className={styles.navLink}>
+                <Link 
+                  href={
+                    item === 'Trang chủ' ? '/' : 
+                    item === 'Căn hộ' ? '/can-ho' :
+                    item === 'Về chúng tôi' ? '/ve-chung-toi' : 
+                    item === 'Liên hệ' ? '/lien-he' : '#'
+                  } 
+                  className={styles.navLink}
+                >
                   {item}
                 </Link>
               </motion.li>

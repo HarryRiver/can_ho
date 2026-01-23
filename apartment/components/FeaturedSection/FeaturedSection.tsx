@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import ApartmentCard from './ApartmentCard';
+import ApartmentCard from '../ApartmentCard/ApartmentCard';
 import styles from './FeaturedSection.module.css';
 
 const APARTMENTS = [
