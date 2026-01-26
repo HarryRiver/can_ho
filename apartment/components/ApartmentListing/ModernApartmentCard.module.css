@@ -189,7 +189,7 @@
 
 .viewBtn {
   background: #fff7ed;
-  color: #ff7b00;
+  color: #2563eb;
   padding: 10px 20px;
   border-radius: 10px;
   font-weight: 700;
@@ -199,7 +199,7 @@
 }
 
 .viewBtn:hover {
-  background: #ff7b00;
+  background: #2563eb;
   color: white;
 }
 

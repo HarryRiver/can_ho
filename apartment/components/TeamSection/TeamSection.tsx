@@ -18,12 +18,12 @@ const team = [
   {
     name: 'Trần Minh Hoàng',
     role: 'Trưởng bộ phận Công nghệ',
-    image: '/images/team-1.png', // Reusing for demo
+    image: '/images/team-1.png', 
   },
   {
     name: 'Phạm Thanh Thủy',
     role: 'Giám đốc Marketing',
-    image: '/images/team-2.png', // Reusing for demo
+    image: '/images/team-2.png', 
   },
 ];
 

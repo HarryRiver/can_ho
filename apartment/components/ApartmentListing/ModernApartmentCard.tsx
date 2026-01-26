@@ -121,7 +121,7 @@ export default function ModernApartmentCard({
                 <div className={styles.moreCount}>+2</div>
               </div>
             </div>
-            <button className={styles.viewBtn}>View Details</button>
+            <button className={styles.viewBtn}>Xem chi tiết</button>
           </div>
         </div>
       </Link>

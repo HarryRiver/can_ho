@@ -24,6 +24,7 @@ const LOCATIONS = [
   'Quận Sơn Trà, Đà Nẵng',
   'Quận Ngũ Hành Sơn, Đà Nẵng',
   'Quận Thanh Khê, Đà Nẵng',
+  'Phường Hòa Xuân, Đà Nẵng',
 ];
 
 const PRICES = [
