@@ -66,7 +66,7 @@ export default function ModernApartmentCard({
           </div>
 
           <div className={styles.priceTag}>
-            {price}<span>/mo</span>
+            {price}
           </div>
         </div>
 

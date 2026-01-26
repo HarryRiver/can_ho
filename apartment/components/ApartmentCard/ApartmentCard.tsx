@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './ApartmentCard.module.css';
 
 interface ApartmentProps {
+  id: number;
   image: string;
   tag: string;
   tagType: 'premium' | 'new' | 'hot';
@@ -14,6 +16,7 @@ interface ApartmentProps {
 }
 
 export default function ApartmentCard({
+  id,
   image,
   tag,
   tagType,
@@ -79,7 +82,9 @@ export default function ApartmentCard({
         </div>
 
         <div className={styles.footer}>
-          <button className={styles.button}>Xem chi tiết</button>
+          <Link href={`/can-ho/${id}`} className={styles.button} style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+            Xem chi tiết
+          </Link>
         </div>
       </div>
     </div>

@@ -1,48 +1,23 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ApartmentCard from '../ApartmentCard/ApartmentCard';
 import styles from './FeaturedSection.module.css';
 
-const APARTMENTS = [
-  {
-    id: 1,
-    image: '/images/vinhomes.png',
-    tag: 'Premium',
-    tagType: 'premium' as const,
-    title: 'Vinhomes Central Park',
-    price: '25tr/tháng',
-    address: 'Quận Bình Thạnh, TP.HCM',
-    area: '85m²',
-    bedrooms: 2,
-    wc: 2,
-  },
-  {
-    id: 2,
-    image: '/images/vinhomes.png',
-    tag: 'Mới nhất',
-    tagType: 'new' as const,
-    title: 'Masteri Thảo Điền',
-    price: '18tr/tháng',
-    address: 'Quận 2, TP. Thủ Đức',
-    area: '62m²',
-    bedrooms: 1,
-    wc: 1,
-  },
-  {
-    id: 3,
-    image: '/images/vinhomes.png',
-    tag: 'Đặc biệt',
-    tagType: 'hot' as const,
-    title: 'The Metropole',
-    price: '45tr/tháng',
-    address: 'Quận 2, TP. Thủ Đức',
-    area: '120m²',
-    bedrooms: 3,
-    wc: 3,
-  },
-];
+interface Apartment {
+  id: number;
+  image: string;
+  tag: string;
+  tagType: 'premium' | 'new' | 'hot';
+  title: string;
+  price: string;
+  address: string;
+  area: string;
+  bedrooms: number;
+  wc: number;
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -68,6 +43,25 @@ const itemVariants = {
 };
 
 export default function FeaturedSection() {
+  const [apartments, setApartments] = useState<Apartment[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchApartments = async () => {
+      try {
+        const response = await fetch('/api/featured-apartments');
+        const data = await response.json();
+        setApartments(data);
+      } catch (error) {
+        console.error('Failed to fetch apartments:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchApartments();
+  }, []);
+
   return (
     <section className={styles.section}>
       <div className="container">
@@ -79,24 +73,28 @@ export default function FeaturedSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className={styles.title}>Căn hộ nổi bật</h2>
-          <Link href="#" className={styles.viewAll}>
+          <Link href="/can-ho" className={styles.viewAll}>
             Xem tất cả &rarr;
           </Link>
         </motion.div>
 
-        <motion.div 
-          className={styles.grid}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {APARTMENTS.map((apt) => (
-            <motion.div key={apt.id} variants={itemVariants}>
-              <ApartmentCard {...apt} />
-            </motion.div>
-          ))}
-        </motion.div>
+        {isLoading ? (
+          <div className={styles.loading}>Đang tải...</div>
+        ) : (
+          <motion.div 
+            className={styles.grid}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {apartments.map((apt) => (
+              <motion.div key={apt.id} variants={itemVariants}>
+                <ApartmentCard {...apt} />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   );

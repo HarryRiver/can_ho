@@ -136,14 +136,27 @@
 
 .logoutBtn {
   margin-top: auto;
-  border-top: 1px solid #e5e7eb;
-  padding-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centered content looks better for a big action button */
+  gap: 0.75rem;
+  padding: 14px;
+  border-radius: 14px;
+  background-color: #FEF2F2;
   color: #EF4444;
+  font-weight: 700;
+  border: 1px solid #FECACA;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 .logoutBtn:hover {
-  background-color: #FEF2F2;
-  color: #DC2626;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(239, 68, 68, 0.5);
 }
 
 /* Support Box */

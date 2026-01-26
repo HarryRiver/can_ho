@@ -22,8 +22,8 @@ export default function AboutCTA() {
               Đội ngũ chuyên gia của chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7.
             </p>
             <div className={styles.btns}>
-              <Link href="#" className={styles.primaryBtn}>Xem danh sách căn hộ</Link>
-              <Link href="#" className={styles.secondaryBtn}>Liên hệ chuyên gia</Link>
+              <Link href="/can-ho" className={styles.primaryBtn}>Xem danh sách căn hộ</Link>
+              <Link href="/lien-he" className={styles.secondaryBtn}>Liên hệ chuyên gia</Link>
             </div>
           </motion.div>
         </div>
