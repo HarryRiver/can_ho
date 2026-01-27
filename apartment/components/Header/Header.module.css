@@ -111,6 +111,42 @@
   box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
 }
 
+.signinBtn {
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.signinBtn:hover {
+  color: #2563eb;
+  background-color: #f8fafc;
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcomeText {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+@media (max-width: 1024px) {
+  .welcomeText {
+    display: none;
+  }
+}
+
 .userBtn {
   width: 44px;
   height: 44px;
@@ -123,12 +159,19 @@
   color: #64748b;
   transition: all 0.2s;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .userBtn:hover {
   border-color: #2563eb;
   color: #2563eb;
   background: #eff6ff;
+}
+
+.userAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 900px) {

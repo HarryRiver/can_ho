@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const { data: session } = useSession();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -120,30 +122,61 @@ export default function Header() {
               Đăng tin
             </motion.div>
           </Link>
-          <Link href="/tai-khoan">
-            <motion.div 
-              className={styles.userBtn} 
-              aria-label="User Profile"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ scale: 1.1 }}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+
+          {!session ? (
+            <Link href="/dang-nhap">
+              <motion.div 
+                className={styles.signinBtn}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            </motion.div>
-          </Link>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                  <polyline points="10 17 15 12 10 7" />
+                  <line x1="15" y1="12" x2="3" y2="12" />
+                </svg>
+                Đăng nhập
+              </motion.div>
+            </Link>
+          ) : (
+            <div className={styles.userContainer}>
+              <span className={styles.welcomeText}>
+                Hello, {session.user?.name?.split(' ')[0]}
+              </span>
+              <Link href="/tai-khoan">
+                <motion.div 
+                  className={styles.userBtn} 
+                  aria-label="User Profile"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  {session.user?.image ? (
+                    <img 
+                      src={session.user.image} 
+                      alt={session.user.name || "User"} 
+                      className={styles.userAvatar}
+                    />
+                  ) : (
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  )}
+                </motion.div>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </header>

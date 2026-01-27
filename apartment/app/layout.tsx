@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { Providers } from "@/components/Providers";
 
 export default function RootLayout({
   children,
@@ -31,9 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

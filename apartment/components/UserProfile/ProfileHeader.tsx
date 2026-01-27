@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import styles from './UserProfile.module.css';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
 
 export default function ProfileHeader() {
+  const { data: session } = useSession();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   return (
@@ -13,11 +15,11 @@ export default function ProfileHeader() {
         <div className={styles.headerLeft}>
           <div className={styles.bigAvatarWrapper}>
             <img 
-              src="/images/team-1.png" 
+              src={session?.user?.image || "/images/team-1.png"} 
               alt="User Avatar" 
               className={styles.bigAvatar}
               onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Nguyen+Van+A&background=random';
+                (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=User&background=random';
               }}
             />
             <div className={styles.cameraIcon}>
@@ -30,7 +32,7 @@ export default function ProfileHeader() {
           
           <div className={styles.headerInfo}>
             <h1>
-              Nguyễn Văn A
+              {session?.user?.name || "Khách"}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="#2563EB" stroke="none">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
               </svg>

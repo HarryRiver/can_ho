@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 import styles from './UserProfile.module.css';
 
 const MENU_ITEMS = [
@@ -14,21 +15,22 @@ const MENU_ITEMS = [
 
 export default function ProfileSidebar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   return (
     <div className={styles.sidebar}>
       {/* Mini Profile */}
       <div className={styles.miniProfile}>
         <img 
-          src="/images/team-1.png" 
+          src={session?.user?.image || "/images/team-1.png"} 
           alt="Avatar" 
           className={styles.miniAvatar}
           onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Nguyen+Van+A&background=random';
+            (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=User&background=random';
           }}
         />
         <div className={styles.miniInfo}>
-          <h3>Nguyễn Văn A</h3>
+          <h3>{session?.user?.name || "Khách"}</h3>
           <div className={styles.verifiedBadge}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
@@ -59,7 +61,10 @@ export default function ProfileSidebar() {
       </nav>
 
       {/* Logout */}
-      <button className={styles.logoutBtn}>
+      <button 
+        className={styles.logoutBtn}
+        onClick={() => signOut({ callbackUrl: '/' })}
+      >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
           <polyline points="16 17 21 12 16 7" />
