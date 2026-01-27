@@ -41,7 +41,7 @@ const FEATURED_APARTMENTS = [
 ];
 
 export async function GET() {
-  // Simulate network delay for realistic loading state
+
   await new Promise((resolve) => setTimeout(resolve, 500));
   
   return NextResponse.json(FEATURED_APARTMENTS);
