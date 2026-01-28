@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import styles from './Header.module.css';
 
 export default function Header() {
   const { data: session } = useSession();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -86,7 +88,12 @@ export default function Header() {
                     item === 'Về chúng tôi' ? '/ve-chung-toi' : 
                     item === 'Liên hệ' ? '/lien-he' : '#'
                   } 
-                  className={styles.navLink}
+                  className={`${styles.navLink} ${
+                    (item === 'Trang chủ' && pathname === '/') ||
+                    (item !== 'Trang chủ' && pathname?.startsWith(item === 'Căn hộ' ? '/can-ho' : item === 'Về chúng tôi' ? '/ve-chung-toi' : '/lien-he'))
+                      ? styles.active 
+                      : ''
+                  }`}
                 >
                   {item}
                 </Link>

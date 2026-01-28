@@ -64,7 +64,8 @@
   position: relative;
 }
 
-.navLink:hover {
+.navLink:hover,
+.active {
   color: #2563eb;
 }
 
@@ -79,7 +80,8 @@
   transition: width 0.3s;
 }
 
-.navLink:hover::after {
+.navLink:hover::after,
+.active::after {
   width: 100%;
 }
 
