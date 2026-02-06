@@ -1,0 +1,83 @@
+.main {
+  background-color: #f8fafc;
+  min-height: 100vh;
+  padding: 100px 0 60px;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #64748b;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.formContainer {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #f1f5f9;
+}
+
+.previewContainer {
+  position: sticky;
+  top: 100px;
+}
+
+.actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.prevButton {
+  padding: 16px 30px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prevButton:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.nextButton {
+  padding: 16px 40px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nextButtonLoading {
+  background: #94a3b8;
+  cursor: not-allowed;
+}

@@ -1,3 +1,11 @@
-export { default } from "next-auth/middleware"
+import { withAuth } from "next-auth/middleware";
 
-export const config = { matcher: ["/tai-khoan/:path*", "/dang-tin/:path*"] }
+export default withAuth({
+  pages: {
+    signIn: "/dang-nhap",
+  },
+});
+
+export const config = {
+  matcher: ["/tai-khoan/:path*", "/dang-tin/:path*"],
+};

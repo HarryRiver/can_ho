@@ -8,10 +8,10 @@ interface StepperProps {
 }
 
 const steps = [
-  { id: 1, label: 'Basic Info' },
-  { id: 2, label: 'Media' },
-  { id: 3, label: 'Description' },
-  { id: 4, label: 'Amenities' },
+  { id: 1, label: 'Thông tin' },
+  { id: 2, label: 'Hình ảnh' },
+  { id: 3, label: 'Mô tả' },
+  { id: 4, label: 'Tiện ích' },
 ];
 
 export default function Stepper({ currentStep }: StepperProps) {

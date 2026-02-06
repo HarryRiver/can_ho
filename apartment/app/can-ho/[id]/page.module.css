@@ -1,0 +1,30 @@
+.main {
+  background-color: #fff;
+  min-height: 100vh;
+  padding: 100px 0;
+}
+
+.breadcrumb {
+  margin-bottom: 30px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.breadcrumbLink {
+  color: inherit;
+}
+
+.breadcrumbSeparator {
+  margin: 0 10px;
+}
+
+.breadcrumbCurrent {
+  color: #0f172a;
+  font-weight: bold;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 50px;
+}

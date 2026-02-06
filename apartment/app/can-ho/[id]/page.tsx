@@ -4,6 +4,7 @@ import ContactAgentCard from '@/components/ApartmentDetail/ContactAgentCard';
 import Link from 'next/link';
 import { apartments } from '@/data/apartments';
 import { notFound } from 'next/navigation';
+import styles from './page.module.css';
 
 export default async function ApartmentDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -14,20 +15,20 @@ export default async function ApartmentDetailPage({ params }: { params: Promise<
   }
 
   return (
-    <main style={{ backgroundColor: '#fff', minHeight: '100vh', padding: '100px 0' }}>
+    <main className={styles.main}>
       <div className="container">
         {/* Breadcrumbs */}
-        <nav style={{ marginBottom: '30px', fontSize: '0.9rem', color: '#64748b' }}>
-          <Link href="/" style={{ color: 'inherit' }}>Home</Link>
-          <span style={{ margin: '0 10px' }}>›</span>
-          <Link href="/can-ho">Apartments</Link>
-          <span style={{ margin: '0 10px' }}>›</span>
-          <span style={{ color: '#0f172a', fontWeight: 'bold' }}>{apartment.title}</span>
+        <nav className={styles.breadcrumb}>
+          <Link href="/" className={styles.breadcrumbLink}>Trang chủ</Link>
+          <span className={styles.breadcrumbSeparator}>›</span>
+          <Link href="/can-ho" className={styles.breadcrumbLink}>Căn hộ</Link>
+          <span className={styles.breadcrumbSeparator}>›</span>
+          <span className={styles.breadcrumbCurrent}>{apartment.title}</span>
         </nav>
 
         <ApartmentGallery mainImage={apartment.image} />
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr', gap: '50px' }}>
+        <div className={styles.contentGrid}>
           <ApartmentInfo apartment={apartment} />
           <ContactAgentCard />
         </div>

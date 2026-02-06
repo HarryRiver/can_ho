@@ -33,25 +33,43 @@ export default function RegisterPage() {
       return;
     }
 
-    // Simulate registration
-    setTimeout(async () => {
-      // For this demo, we'll just log them in with the demo account
-      // In a real app, you would make an API call to create the user
-      
-      const res = await signIn('credentials', {
+    try {
+      // 1. Call Register API
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Đăng ký thất bại');
+      }
+
+      // 2. Auto Login after successful registration
+      const loginRes = await signIn('credentials', {
         redirect: false,
         email: formData.email,
         password: formData.password,
       });
 
-      if (!res?.error) {
+      if (!loginRes?.error) {
         router.push('/');
         router.refresh();
       } else {
-        setError('Đăng ký thất bại. Vui lòng thử lại.');
-        setIsLoading(false);
+        // Fallback if auto-login fails, redirect to login page
+        router.push('/dang-nhap');
       }
-    }, 1500);
+
+    } catch (err: any) {
+      setError(err.message || 'Có lỗi xảy ra, vui lòng thử lại');
+      setIsLoading(false);
+    }
   };
 
   return (

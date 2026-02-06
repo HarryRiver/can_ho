@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
+import { toast } from 'react-toastify';
 import Stepper from '@/components/PostListing/Stepper';
 import LivePreview from '@/components/PostListing/LivePreview';
 import Step1BasicInfo from '@/components/PostListing/Step1BasicInfo';
 import Step2Media from '@/components/PostListing/Step2Media';
 import Step3Description from '@/components/PostListing/Step3Description';
 import Step4Amenities from '@/components/PostListing/Step4Amenities';
+import styles from './page.module.css';
 
 export default function PostListingPage() {
   const router = useRouter();
@@ -30,7 +30,7 @@ export default function PostListingPage() {
     rules: [] as string[]
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -69,14 +69,14 @@ export default function PostListingPage() {
       const data = await response.json();
 
       if (data.success) {
-        alert('Listing submitted successfully! An admin will review it shortly.');
-        router.push('/'); // Redirect to home or a success page
+        toast.success('Tin đăng đã được gửi thành công! Quản trị viên sẽ duyệt sớm.');
+        router.push('/'); 
       } else {
-        alert('Failed to submit listing. Please try again.');
+        toast.error('Gửi tin thất bại. Vui lòng thử lại.');
       }
     } catch (error) {
       console.error('Error submitting listing:', error);
-      alert('An error occurred. Please try again.');
+      toast.error('Đã xảy ra lỗi. Vui lòng thử lại.');
     } finally {
       setIsSubmitting(false);
     }
@@ -84,76 +84,54 @@ export default function PostListingPage() {
 
   return (
     <>
-      <main style={{ backgroundColor: '#f8fafc', minHeight: '100vh', padding: '100px 0 60px' }}>
+      <main className={styles.main}>
         <div className="container">
-          <div style={{ marginBottom: '40px' }}>
-             <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', marginBottom: '10px' }}>
-               Post New Apartment Listing
+          <div className={styles.header}>
+             <h1 className={styles.title}>
+               Đăng Tin Cho Thuê Căn Hộ Mới
              </h1>
-             <p style={{ color: '#64748b' }}>
+             <p className={styles.subtitle}>
                {currentStep === 1 
-                 ? "Create a standout listing to attract high-end tenants." 
+                 ? "Tạo một tin đăng nổi bật để thu hút khách thuê cao cấp." 
                  : currentStep === 2
-                 ? "Enhance your listing with professional photography and video tours."
+                 ? "Nâng cao tin đăng của bạn với hình ảnh chuyên nghiệp và video quay cảnh quan."
                  : currentStep === 3
-                 ? "Describe your property's unique features and location."
-                 : "Finalize your listing details and set the ground rules."}
+                 ? "Mô tả các đặc điểm độc đáo và vị trí bất động sản của bạn."
+                 : "Hoàn tất chi tiết tin đăng và thiết lập các quy định cơ bản."}
              </p>
           </div>
 
           <Stepper currentStep={currentStep} />
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '50px', alignItems: 'start' }}>
-            <div style={{ background: 'white', padding: '40px', borderRadius: '24px', border: '1px solid #f1f5f9' }}>
+          <div className={styles.contentGrid}>
+            <div className={styles.formContainer}>
               {currentStep === 1 && <Step1BasicInfo formData={formData} onChange={handleChange} />}
               {currentStep === 2 && <Step2Media />}
               {currentStep === 3 && <Step3Description formData={formData} onChange={handleChange} />}
               {currentStep === 4 && <Step4Amenities formData={formData} onChange={handleChange} onToggleAmenity={handleToggleAmenity} />}
             </div>
             
-            <div style={{ position: 'sticky', top: '100px' }}>
+            <div className={styles.previewContainer}>
               <LivePreview data={formData} />
             </div>
           </div>
 
-          <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'space-between' }}>
+          <div className={styles.actions}>
             <button 
               onClick={prevStep}
-              disabled={isSubmitting}
-              style={{ 
-              padding: '16px 30px', 
-              background: 'transparent', 
-              border: 'none', 
-              color: currentStep === 1 ? '#cbd5e1' : '#64748b', 
-              fontWeight: 700,
-              fontSize: '1rem',
-              cursor: currentStep === 1 || isSubmitting ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
+              disabled={isSubmitting || currentStep === 1}
+              className={styles.prevButton}
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-              Previous
+              Quay lại
             </button>
 
             <button 
               onClick={currentStep === 4 ? handleSubmit : nextStep}
               disabled={isSubmitting}
-              style={{ 
-              padding: '16px 40px', 
-              background: isSubmitting ? '#94a3b8' : '#1e3a8a', 
-              color: 'white', 
-              border: 'none', 
-              borderRadius: '12px',
-              fontWeight: 700,
-              fontSize: '1rem',
-              cursor: isSubmitting ? 'not-allowed' : 'pointer',
-              boxShadow: '0 10px 20px rgba(30, 58, 138, 0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px'
-            }}>
-              {isSubmitting ? 'Submitting...' : (currentStep === 4 ? 'Submit for Review' : 'Next Step')}
+              className={`${styles.nextButton} ${isSubmitting ? styles.nextButtonLoading : ''}`}
+            >
+              {isSubmitting ? 'Đang gửi...' : (currentStep === 4 ? 'Gửi để xét duyệt' : 'Tiếp theo')}
               {!isSubmitting && currentStep < 4 && (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
               )}
