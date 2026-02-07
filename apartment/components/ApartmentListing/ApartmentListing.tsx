@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { apartments } from '@/data/apartments';
 import FilterSidebar from './FilterSidebar';
 import ModernApartmentCard from './ModernApartmentCard';
@@ -83,15 +83,14 @@ export default function ApartmentListing() {
     });
   }, [locationParam, priceParam, typeParam, minPriceParam, maxPriceParam, typesParam, amenitiesParam]);
 
-  // Reset page when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filteredApartments]);
-
   const totalPages = Math.ceil(filteredApartments.length / ITEMS_PER_PAGE);
+  
+  // Automatically reset to page 1 if current page exceeds total pages (e.g., after filtering)
+  const effectivePage = currentPage > totalPages ? 1 : currentPage;
+  
   const paginatedApartments = filteredApartments.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    (effectivePage - 1) * ITEMS_PER_PAGE,
+    effectivePage * ITEMS_PER_PAGE
   );
 
   const handlePageChange = (page: number) => {
@@ -161,9 +160,9 @@ export default function ApartmentListing() {
               <div className={styles.pagination}>
                 <button 
                   className={styles.pageArrow} 
-                  disabled={currentPage === 1}
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? 'default' : 'pointer' }}
+                  disabled={effectivePage === 1}
+                  onClick={() => handlePageChange(effectivePage - 1)}
+                  style={{ opacity: effectivePage === 1 ? 0.5 : 1, cursor: effectivePage === 1 ? 'default' : 'pointer' }}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="15 18 9 12 15 6" />
@@ -173,7 +172,7 @@ export default function ApartmentListing() {
                 {Array.from({ length: Math.min(6, totalPages) }, (_, i) => i + 1).map((page) => (
                   <button
                     key={page}
-                    className={`${styles.pageNum} ${currentPage === page ? styles.active : ''}`}
+                    className={`${styles.pageNum} ${effectivePage === page ? styles.active : ''}`}
                     onClick={() => handlePageChange(page)}
                   >
                     {page}
@@ -184,9 +183,9 @@ export default function ApartmentListing() {
                 
                 <button 
                   className={styles.pageArrow}
-                  disabled={currentPage === totalPages}
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  style={{ opacity: currentPage === totalPages ? 0.5 : 1, cursor: currentPage === totalPages ? 'default' : 'pointer' }}
+                  disabled={effectivePage === totalPages}
+                  onClick={() => handlePageChange(effectivePage + 1)}
+                  style={{ opacity: effectivePage === totalPages ? 0.5 : 1, cursor: effectivePage === totalPages ? 'default' : 'pointer' }}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="9 18 15 12 9 6" />

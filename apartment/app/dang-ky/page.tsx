@@ -66,8 +66,9 @@ export default function RegisterPage() {
         router.push('/dang-nhap');
       }
 
-    } catch (err: any) {
-      setError(err.message || 'Có lỗi xảy ra, vui lòng thử lại');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Có lỗi xảy ra, vui lòng thử lại';
+      setError(errorMessage);
       setIsLoading(false);
     }
   };

@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { PostListingFormData, FormChangeEvent } from '@/types/postListing';
 import styles from './Step1BasicInfo.module.css';
 
 interface Step1Props {
-  formData: any;
-  onChange: (e: any) => void;
+  formData: PostListingFormData;
+  onChange: (e: FormChangeEvent) => void;
 }
 
 export default function Step1BasicInfo({ formData, onChange }: Step1Props) {

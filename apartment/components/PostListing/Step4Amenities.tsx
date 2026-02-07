@@ -1,10 +1,11 @@
 'use client';
 
+import { PostListingFormData, FormChangeEvent } from '@/types/postListing';
 import styles from './Step4Amenities.module.css';
 
 interface Step4Props {
-  formData: any;
-  onChange: (e: any) => void;
+  formData: PostListingFormData;
+  onChange: (e: FormChangeEvent) => void;
   onToggleAmenity: (amenity: string) => void;
 }
 

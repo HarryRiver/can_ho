@@ -1,10 +1,11 @@
 'use client';
 
+import { PostListingFormData, FormChangeEvent } from '@/types/postListing';
 import styles from './Step3Description.module.css';
 
 interface Step3Props {
-  formData: any;
-  onChange: (e: any) => void;
+  formData: PostListingFormData;
+  onChange: (e: FormChangeEvent) => void;
 }
 
 export default function Step3Description({ formData, onChange }: Step3Props) {
