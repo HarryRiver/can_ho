@@ -9,27 +9,43 @@ const MAX_PRICE_LIMIT = 100; // 100 Million
 export default function FilterSidebar() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(MAX_PRICE_LIMIT);
-  const [apartmentTypes, setApartmentTypes] = useState<string[]>([]);
-  const [amenities, setAmenities] = useState<string[]>([]);
+  const searchParamsString = searchParams.toString();
+
+  // Initialize state from URL search params
+  const [minPrice, setMinPrice] = useState(() => {
+    const min = searchParams.get('minPrice');
+    return min ? Number(min) : 0;
+  });
+  const [maxPrice, setMaxPrice] = useState(() => {
+    const max = searchParams.get('maxPrice');
+    return max ? Number(max) : MAX_PRICE_LIMIT;
+  });
+  const [apartmentTypes, setApartmentTypes] = useState<string[]>(() => {
+    const types = searchParams.get('types');
+    return types ? types.split(',') : [];
+  });
+  const [amenities, setAmenities] = useState<string[]>(() => {
+    const amens = searchParams.get('amenities');
+    return amens ? amens.split(',') : [];
+  });
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeThumb, setActiveThumb] = useState<'min' | 'max' | null>(null);
 
-  // Initialize from URL
-  useEffect(() => {
+  // Sync state when URL search params change (React-recommended pattern)
+  const [prevSearchParams, setPrevSearchParams] = useState(searchParamsString);
+  if (searchParamsString !== prevSearchParams) {
+    setPrevSearchParams(searchParamsString);
     const min = searchParams.get('minPrice');
     const max = searchParams.get('maxPrice');
     const types = searchParams.get('types');
     const amens = searchParams.get('amenities');
 
-    if (min) setMinPrice(parseInt(min));
-    if (max) setMaxPrice(parseInt(max));
-    if (types) setApartmentTypes(types.split(','));
-    if (amens) setAmenities(amens.split(','));
-  }, [searchParams]);
+    setMinPrice(min ? Number(min) : 0);
+    setMaxPrice(max ? Number(max) : MAX_PRICE_LIMIT);
+    setApartmentTypes(types ? types.split(',') : []);
+    setAmenities(amens ? amens.split(',') : []);
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {

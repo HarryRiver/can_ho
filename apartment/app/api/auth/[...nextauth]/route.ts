@@ -53,7 +53,7 @@ export const authOptions: AuthOptions = {
     error: '/dang-nhap', 
   },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user }) {
       // Khi đăng nhập thành công lần đầu, user sẽ có dữ liệu từ hàm authorize trả về
       if (user) {
         token.accessToken = user.accessToken as string;
